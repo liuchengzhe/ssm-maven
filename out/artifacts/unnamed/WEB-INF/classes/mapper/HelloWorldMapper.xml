@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatisStudy.orm.mapper.HelloWorldMapper">
+    <resultMap id="BaseResultMap" type="com.mybatisStudy.orm.po.HelloWorld">
+        <id column="pk" jdbcType="INTEGER" property="pk"/>
+        <result column="Column1" jdbcType="VARCHAR" property="column1"/>
+        <result column="Column2" jdbcType="DATE" property="column2"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        pk, Column1, Column2
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from HelloWorld
+        where pk = #{pk,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from HelloWorld
+        where pk = #{pk,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.mybatisStudy.orm.po.HelloWorld">
+        insert into HelloWorld (pk, Column1, Column2
+        )
+        values (#{pk,jdbcType=INTEGER}, #{column1,jdbcType=VARCHAR}, #{column2,jdbcType=DATE}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.mybatisStudy.orm.po.HelloWorld">
+        insert into HelloWorld
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pk != null">
+                pk,
+            </if>
+            <if test="column1 != null">
+                Column1,
+            </if>
+            <if test="column2 != null">
+                Column2,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="pk != null">
+                #{pk,jdbcType=INTEGER},
+            </if>
+            <if test="column1 != null">
+                #{column1,jdbcType=VARCHAR},
+            </if>
+            <if test="column2 != null">
+                #{column2,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mybatisStudy.orm.po.HelloWorld">
+        update HelloWorld
+        <set>
+            <if test="column1 != null">
+                Column1 = #{column1,jdbcType=VARCHAR},
+            </if>
+            <if test="column2 != null">
+                Column2 = #{column2,jdbcType=DATE},
+            </if>
+        </set>
+        where pk = #{pk,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mybatisStudy.orm.po.HelloWorld">
+        update HelloWorld
+        set Column1 = #{column1,jdbcType=VARCHAR},
+        Column2 = #{column2,jdbcType=DATE}
+        where pk = #{pk,jdbcType=INTEGER}
+    </update>
+</mapper>

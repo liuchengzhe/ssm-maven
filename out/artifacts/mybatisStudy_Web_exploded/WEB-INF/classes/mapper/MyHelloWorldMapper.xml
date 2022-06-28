@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatisStudy.orm.mapper.MyHelloWorldMapper">
+    <resultMap id="BaseResultMap" type="com.mybatisStudy.orm.po.HelloWorld">
+        <result column="PK" jdbcType="INTEGER" property="pk"/>
+        <result column="Column1" jdbcType="VARCHAR" property="column1"/>
+        <result column="Column2" jdbcType="DATE" property="column2"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.mybatisStudy.orm.po.HelloWorld">
+        insert into HelloWorld (PK, Column1, Column2
+        )
+        values (#{pk,jdbcType=INTEGER}, #{column1,jdbcType=VARCHAR}, #{column2,jdbcType=DATE}
+        )
+    </insert>
+</mapper>
