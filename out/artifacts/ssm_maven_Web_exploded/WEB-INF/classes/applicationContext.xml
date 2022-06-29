@@ -37,13 +37,13 @@
     <!-- 静态资源默认servlet配置 -->
     <mvc:default-servlet-handler/>
 
-    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"-->
-    <!--id="internalResourceViewResolver">-->
-    <!--&lt;!&ndash; 前缀 &ndash;&gt;-->
-    <!--<property name="prefix" value="/"/>-->
-    <!--&lt;!&ndash; 后缀 &ndash;&gt;-->
-    <!--<property name="suffix" value=".html"/>-->
-    <!--</bean>-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          id="internalResourceViewResolver">
+        <!-- 前缀 -->
+        <property name="prefix" value="/"/>
+        <!-- 后缀 -->
+        <property name="suffix" value=".html"/>
+    </bean>
 
     <!-- 引入配置文件 -->
     <bean id="propertyConfigurer"
