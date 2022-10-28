@@ -7,6 +7,9 @@
     <!--mysql 连接数据库jar 这里选择自己本地位置; 如果不知道maven本地仓库地址，可以使用EveryThing工具全局搜索mysql-connector-java，找到jar包位置；
 		也可以手动下载一个jar放在指定位置，进行引用。 -->
     <context id="testTables" targetRuntime="MyBatis3">
+        <!--覆盖生成XML文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+
         <commentGenerator>
             <!-- 是否去除自动生成的注释,true：是,false:否 -->
             <property name="suppressAllComments" value="true"/>
@@ -47,7 +50,6 @@
                              targetProject="D:\scaffold\ssm-maven\src\main\java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
-
 
 
         <!-- 指定数据库表 domainObjectName：生成的domain类的名字,当表名和domain类的名字有差异时一定要设置，如果不设置，直接使用表名作为domain类的名字；
